@@ -1,0 +1,15 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "definitions/.*",
+                "cmd": "cp ${file} ~/.local/share/cura/5.9/definitions/"
+            },
+            {
+                "match": "extruders/.*",
+                "cmd": "cp ${file} ~/.local/share/cura/5.9/extruders/"
+            }
+        ]
+    },
+    "editor.formatOnSave": false
+}
