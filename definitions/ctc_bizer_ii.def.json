@@ -2,34 +2,34 @@
     "version": 2,
     "name": "CTCBizerII",
     "inherits": "fdmprinter",
-    "metadata":
-    {
+    "metadata": {
         "visible": true,
         "manufacturer": "CTC",
         "file_formats": "application/x3g",
-        "machine_extruder_trains": { 
-            "0": "ctc_bizer_ii_extruder_0" ,
+        "machine_extruder_trains": {
+            "0": "ctc_bizer_ii_extruder_0",
             "1": "ctc_bizer_ii_extruder_1"
         },
         "machine_x3g_variant": "r1",
-        "platform_offset": [
-            0,
-            0,
-            0
-        ]
+        "platform_offset": [0, 0, 0]
     },
-    "overrides":
-    {
+    "overrides": {
         "infill_sparse_density": { "default_value": 10 },
         "layer_height": { "default_value": 0.15 },
         "machine_center_is_zero": { "default_value": false },
         "machine_depth": { "default_value": 145 },
-        "machine_extruder_count": { "default_value": 1 },
-        "machine_gcode_flavor": { "default_value": "CTC" },
+        "machine_extruder_count": { "default_value": 2 },
+        "machine_gcode_flavor": { "default_value": "Marlin" },
         "machine_heated_bed": { "default_value": true },
         "machine_height": { "default_value": 150 },
         "machine_name": { "default_value": "CTC Bizer II" },
         "machine_width": { "default_value": 225 },
-        "prime_tower_size": { "default_value": 10.0 }
+        "prime_tower_size": { "default_value": 10.0 },
+        "machine_start_gcode": {
+            "default_value": "; =========================================================\n; NOTE:\n;   This G-Code has been generated for the TU-DO\n;   Makerspace CTC-Bizer II. You can obtain the Cura\n;   profile by logging into the TU-DO Makerspace's Cura\n;   account and restoring the latest configuration\n;   back-up. The login credentials for the Cura account\n;   can be found in the private \"Configs\" repository\n;   of the TU-DO Makerspace Github organization:\n;\n;   https://github.com/TU-DO-Makerspace/Configs\n;\n; NOTE:\n;   Our CTC-Bizer II runs Marlin. To obtain a copy of\n;   our Marlin fork for the CTC-Bizer II, refer to the\n;   \"CTC-Bizer-II\" repository in the TU-DO Makerspace\n;   GitHub organization:\n;\n;   https://github.com/TU-DO-Makerspace/CTC-Bizer-II\n;\n; For more information, please do not hesitate to contact:\n;  - Patrick Pedersen <ctx.xda@gmail.com>\n; =========================================================\n\n; =========================================================\n; BEGIN OF CUSTOM START G-CODE\n; =========================================================\n\nG28             ; Home\nG1 Z15.0 F6000  ; Move the platform down 15mm\n\n;Prime the extruder\nG0 F3600 X0 Y0  ; Move to X0 Y0\nG92 E0          ; Reset extruder origin\nG1 F200 E3      ; Slowly extrude\nG92 E0          ; Reset extruder origin\n\n; M107 ; Fans off - TODO: Not recognized! Find out why!\n\n; Extrude test line to get rid of drool\nG0 F3600 X0 Y0 Z0.3     ; Move to [X0 Y0] Z0.3\nG1 X60.0 E9.0 F1000.0   ; Move to X60 and extrude a little\nG1 X100.0 E21.5 F1000.0 ; Move to X100 and extrude more\n\n; =========================================================\n; END OF CUSTOM START G-CODE\n; =========================================================\n"
+        },
+        "machine_end_gcode": {
+            "default_value": "; =========================================================\n; BEGIN OF CUSTOM END G-CODE\n; =========================================================\n\nG0 Z150     ; Send Z axis to bottom of machine\nM18         ; Disable steppers\nM109 S0 T0  ; Cool down the build platform\nM104 S0 T0  ; Cool down the Right Extruder\nM104 S0 T1  ; Cool down the Left Extruder\nG28 X Y     ; Home X and Y\nM18         ; Disable steppers\n\n; =========================================================\n; END OF CUSTOM END G-CODE\n; =========================================================\n"
+        }
     }
 }
