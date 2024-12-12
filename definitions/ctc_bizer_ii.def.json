@@ -12,7 +12,7 @@
         },
         "machine_x3g_variant": "r1",
         "platform_offset": [0, 0, 0],
-        "authors": "Patrick Pedersen, TU-DO Makerspace"
+        "author": "Patrick Pedersen, TuDo Makerspace"
     },
     "overrides": {
         "infill_sparse_density": { "default_value": 10 },
